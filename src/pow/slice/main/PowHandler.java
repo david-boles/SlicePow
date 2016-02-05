@@ -19,7 +19,7 @@ public class PowHandler extends ContextualHttpHandler {
 		String request = h.getRequestURI().getPath().substring(1);
 	
 		SlicedURL sUrl = URLManager.getURLFromShort(request);
-		if(sUrl == null) sUrl = new SlicedURL(".." + Start.localContext + "/slice.html", "slice", 0);
+		if(sUrl == null) sUrl = new SlicedURL("www.slice.pw" + Start.localContext + "/slice.html", "slice", 0);
 		
 		//Fix local links
 		if(!sUrl.url.startsWith("http")) sUrl.url = "http://" + sUrl.url;
