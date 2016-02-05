@@ -1,15 +1,15 @@
 package pow.slice.main;
 
-public class ShortenedURL {
+public class SlicedURL {
 	public String url;
 	public String shortenedURL;
 	public long creationTime;
-	public long deletionDelay;
+	public long decompDelay;
 	
-	public ShortenedURL(String url, String shortenedURL, long deletionDelay) {
+	public SlicedURL(String url, String shortenedURL, long decompDelay) {
 		this.url = url;
 		this.shortenedURL = shortenedURL;
 		this.creationTime = System.currentTimeMillis();
-		this.deletionDelay = deletionDelay;
+		this.decompDelay = decompDelay;
 	}
 }
