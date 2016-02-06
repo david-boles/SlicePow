@@ -27,10 +27,9 @@ public class SliceHandler extends ContextualHttpHandler {
 			decompD = Long.MAX_VALUE;
 		}
 		
-		SlicedURL sUrl = URLManager.getURLFromFull(url);
-		if(sUrl == null) sUrl = URLManager.sliceURL(url, decompD);
-		
-		
+		/*SlicedURL sUrl = URLManager.getURLFromFull(url);//TODO Reset vars
+		if(sUrl == null) sUrl = URLManager.sliceURL(url, decompD);*/
+		SlicedURL sUrl = URLManager.sliceURL(url, decompD);
 		
 		String sliced = ProgramFs.loadString(ProgramFs.getProgramFile("web/sliced.html"));
 		sliced = sliced.replaceAll("!SURL!", sUrl.shortenedURL);
