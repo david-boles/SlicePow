@@ -27,13 +27,17 @@ public class SliceHandler extends ContextualHttpHandler {
 			decompD = Long.MAX_VALUE;
 		}
 		
-		/*SlicedURL sUrl = URLManager.getURLFromFull(url);//TODO Reset vars
-		if(sUrl == null) sUrl = URLManager.sliceURL(url, decompD);*/
-		SlicedURL sUrl = URLManager.sliceURL(url, decompD);
+		SlicedURL sUrl = URLManager.getURLFromFull(url);//TODO Reset vars
+		if(sUrl == null) sUrl = URLManager.sliceURL(url, decompD);
+		else {
+			sUrl.creationTime = System.currentTimeMillis();
+			if(sUrl.decompDelay < decompD)sUrl.decompDelay = decompD;
+		}
+		//SlicedURL sUrl = URLManager.sliceURL(url, decompD);
 		
 		String sliced = ProgramFs.loadString(ProgramFs.getProgramFile("web/sliced.html"));
 		sliced = sliced.replaceAll("!SURL!", sUrl.shortenedURL);
-		sliced = sliced.replaceAll("!DAYS!", Long.toString(sUrl.decompDelay/(1000*1000*60*60*24)));
+		sliced = sliced.replaceAll("!DAYS!", Float.toString(sUrl.decompDelay/(float)(1000*60*60*24)));
 		
 		h.sendResponseHeaders(200, sliced.length());
         OutputStream os = h.getResponseBody();

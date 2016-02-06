@@ -53,8 +53,9 @@ public class URLManager {
 			t = new Thread(new Runnable(){
 				@Override
 				public void run() {
+					logger.log("URLManager maintainer thread started!");
 					while(true) {
-						synchronized (urls) {
+						synchronized (urls) {synchronized (logger) {
 							for(int i = 0; i < urls.size(); i++) {
 								SlicedURL sUrl = urls.get(i);
 								
@@ -63,11 +64,16 @@ public class URLManager {
 									logger.log("Removed", sUrl.shortenedURL);
 								}
 								
-								try {
-									Thread.sleep(2000);
-								} catch (InterruptedException e) {}
+								
+								logger.logMore("Checked following, info and remaining hours", new Object[]{sUrl.url, sUrl.shortenedURL, (sUrl.decompDelay-(System.currentTimeMillis()-sUrl.creationTime))/(float)(1000*60*60)});
+								
 							}
-						}
+							
+						}}
+						
+						try {
+							Thread.sleep(60000);
+						} catch (InterruptedException e) {}
 					}
 				}
 			});
@@ -81,9 +87,6 @@ public class URLManager {
 		synchronized(urls) {
 			sU.shortenedURL = getUniqueSlice(url);
 			addURL(sU);
-			for(int i = 0; i < urls.size(); i++) {
-				System.out.println(urls.get(i).shortenedURL);
-			}
 		}
 		
 		return sU;
