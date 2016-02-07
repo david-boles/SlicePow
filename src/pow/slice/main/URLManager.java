@@ -88,7 +88,7 @@ public class URLManager {
 						saveURLs();
 						
 						try {
-							Thread.sleep(1000*60*60);
+							Thread.sleep(1000*60*5);
 						} catch (InterruptedException e) {}
 						
 					}
