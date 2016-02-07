@@ -19,14 +19,15 @@ public class PowHandler extends ContextualHttpHandler {
 		String request = h.getRequestURI().getPath().substring(1);
 	
 		SlicedURL sUrl = URLManager.getURLFromShort(request);
-		if(sUrl == null) sUrl = new SlicedURL("www.slice.pw" + Start.localContext + "/slice.html", "slice", 0);
+
+		int delay = 7500;
+		if(sUrl == null) {
+			sUrl = new SlicedURL("www.slice.pw" + Start.localContext + "/slice.html", "slice", 0);
+			delay=0;
+		}
 		
 		//Fix local links
-		int delay = 7500;
-		if(!sUrl.url.startsWith("http")) {
-			sUrl.url = "http://" + sUrl.url;
-			delay = 0;
-		}
+		if(!sUrl.url.startsWith("http")) sUrl.url = "http://" + sUrl.url;
 		
 		String pow = ProgramFs.loadString(ProgramFs.getProgramFile("web/pow.html"));
 		pow = pow.replaceAll("!URL!", sUrl.url);

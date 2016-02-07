@@ -1,5 +1,6 @@
 package pow.slice.main;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import space.davidboles.lib.ht.tp.FolderHttpHandler;
@@ -28,9 +29,26 @@ public class Start {
 		
 		Scanner scan = new Scanner(System.in);
 		while(!Thread.interrupted()) {
-			if(scan.next().equals("stop")) {
+			String in = scan.next();
+			if(in.equals("stop")) {
 				scan.close();
 				stop();
+			}
+			if(in.equals("reset")) {
+				ArrayList<SlicedURL> urls = URLManager.getAll();
+				synchronized (urls) {
+					urls.clear();
+					URLManager.saveURLs();
+				}
+			}
+			if(in.equals("list")) {
+				ArrayList<SlicedURL> urls = URLManager.getAll();
+				synchronized (urls) {
+					for(int i = 0; i < urls.size(); i++) {
+						SlicedURL sUrl = urls.get(i);
+						Logger.uLogger.logMore("URL, short URL, hours remaining", new Object[]{sUrl.url, sUrl.shortenedURL, (sUrl.decompDelay-(System.currentTimeMillis()-sUrl.creationTime))/(float)(1000*60*60)});
+					}
+				}
 			}
 		}
 	}

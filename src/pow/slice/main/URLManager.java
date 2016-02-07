@@ -17,6 +17,12 @@ public class URLManager {
 	private static Thread t = null;
 	public static File urlFolder = ProgramFs.getProgramFile("urls");
 	
+	public static ArrayList<SlicedURL> getAll() {
+		synchronized (urls) {
+			return urls;
+		}
+	}
+	
 	public static void addURL(SlicedURL url) {
 		synchronized(urls) {
 			urls.add(url);
@@ -82,7 +88,7 @@ public class URLManager {
 						saveURLs();
 						
 						try {
-							Thread.sleep(60000);
+							Thread.sleep(1000*60*60);
 						} catch (InterruptedException e) {}
 						
 					}
