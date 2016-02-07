@@ -115,7 +115,7 @@ public class URLManager {
 	
 	
 	private static String getUniqueSlice(String url) {
-		String out = randomString(4);
+		String out = randomString(2);
 		
 		synchronized(urls) {
 			while(getURLFromShort(out) != null) {
