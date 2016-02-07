@@ -37,6 +37,14 @@
     ::selection {
       background: #f0ddc0;
     }
+    .LeaderboardAd {
+        position: absolute;
+        top: calc(100% - 90px);
+        left: calc(50% - 364px);
+        display:inline-block;
+        width:728px;
+        height:90px
+    }
     a:link    {color:#664f30; background-color:transparent; text-decoration:underline}
     a:visited {color:#664f30; background-color:transparent; text-decoration:underline}
     a:hover   {color:#332818; background-color:transparent; text-decoration:underline}
@@ -48,6 +56,21 @@
   <p>
     Your sliced URL, <a href="../!SURL!">slice.pw/!SURL!</a>, will decompose in !DAYS! days.
   </p>
+
+  <script>
+      setTimeout(function () {
+      window.location.href = "!URL!";
+      }, !DELAY!);
+  </script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- SlicePowLeaderboard -->
+  <ins class="LeaderboardAd"
+       data-ad-client="ca-pub-2883252398090731"
+       data-ad-slot="7214535548"></ins>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </body>
 
 </html>
