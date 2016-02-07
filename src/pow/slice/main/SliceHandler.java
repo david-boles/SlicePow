@@ -30,8 +30,10 @@ public class SliceHandler extends ContextualHttpHandler {
 		SlicedURL sUrl = URLManager.getURLFromFull(url);//TODO Reset vars
 		if(sUrl == null) sUrl = URLManager.sliceURL(url, decompD);
 		else {
-			sUrl.creationTime = System.currentTimeMillis();
-			if(sUrl.decompDelay < decompD)sUrl.decompDelay = decompD;
+			synchronized (sUrl) {
+				sUrl.creationTime = System.currentTimeMillis();
+				if(sUrl.decompDelay < decompD)sUrl.decompDelay = decompD;
+			}
 		}
 		//SlicedURL sUrl = URLManager.sliceURL(url, decompD);
 		
