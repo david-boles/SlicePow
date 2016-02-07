@@ -80,7 +80,7 @@ public class URLManager {
 						}}
 						
 						try {
-							Thread.sleep(6000/*0*/);
+							Thread.sleep(60000);
 						} catch (InterruptedException e) {}
 					}
 				}
