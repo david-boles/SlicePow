@@ -29,13 +29,17 @@ public class Start {
 		Scanner scan = new Scanner(System.in);
 		while(!Thread.interrupted()) {
 			if(scan.next().equals("stop")) {
-				Logger.uLogger.log("Stopping");
-				URLManager.stopMaintainer();
-				URLManager.saveURLs();
 				scan.close();
-				System.exit(0);
+				stop();
 			}
 		}
+	}
+	
+	public static void stop() {
+		Logger.uLogger.log("Stopping");
+		URLManager.stopMaintainer();
+		URLManager.saveURLs();
+		System.exit(0);
 	}
 
 }

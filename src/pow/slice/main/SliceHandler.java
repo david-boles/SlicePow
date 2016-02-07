@@ -39,7 +39,7 @@ public class SliceHandler extends ContextualHttpHandler {
 		
 		String sliced = ProgramFs.loadString(ProgramFs.getProgramFile("web/sliced.html"));
 		sliced = sliced.replaceAll("!SURL!", sUrl.shortenedURL);
-		sliced = sliced.replaceAll("!DAYS!", Float.toString(sUrl.decompDelay/(float)(1000*60*60*24)));
+		sliced = sliced.replaceAll("!DAYS!", Float.toString((sUrl.decompDelay-(System.currentTimeMillis()-sUrl.creationTime))/(float)(1000*60*60*24)));
 		
 		h.sendResponseHeaders(200, sliced.length());
         OutputStream os = h.getResponseBody();

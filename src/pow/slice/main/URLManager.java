@@ -78,10 +78,13 @@ public class URLManager {
 							}
 							
 						}}
+
+						saveURLs();
 						
 						try {
 							Thread.sleep(60000);
 						} catch (InterruptedException e) {}
+						
 					}
 				}
 			});
