@@ -34,14 +34,14 @@ public class Start {
 				scan.close();
 				stop();
 			}
-			if(in.equals("reset")) {
+			else if(in.equals("reset")) {
 				ArrayList<SlicedURL> urls = URLManager.getAll();
 				synchronized (urls) {
 					urls.clear();
 					URLManager.saveURLs();
 				}
 			}
-			if(in.equals("list")) {
+			else if(in.equals("list")) {
 				ArrayList<SlicedURL> urls = URLManager.getAll();
 				synchronized (urls) {
 					for(int i = 0; i < urls.size(); i++) {
@@ -49,6 +49,9 @@ public class Start {
 						Logger.uLogger.logMore("URL, short URL, hours remaining", new Object[]{sUrl.url, sUrl.shortenedURL, (sUrl.decompDelay-(System.currentTimeMillis()-sUrl.creationTime))/(float)(1000*60*60)});
 					}
 				}
+			}
+			else {
+				Logger.uLogger.log("Incorrect command.");
 			}
 		}
 	}
