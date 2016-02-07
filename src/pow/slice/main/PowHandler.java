@@ -22,10 +22,15 @@ public class PowHandler extends ContextualHttpHandler {
 		if(sUrl == null) sUrl = new SlicedURL("www.slice.pw" + Start.localContext + "/slice.html", "slice", 0);
 		
 		//Fix local links
-		if(!sUrl.url.startsWith("http")) sUrl.url = "http://" + sUrl.url;
+		int delay = 7500;
+		if(!sUrl.url.startsWith("http")) {
+			sUrl.url = "http://" + sUrl.url;
+			delay = 0;
+		}
 		
 		String pow = ProgramFs.loadString(ProgramFs.getProgramFile("web/pow.html"));
 		pow = pow.replaceAll("!URL!", sUrl.url);
+		pow = pow.replaceAll("!DELAY!", Integer.toString(delay));
 		
 		h.sendResponseHeaders(200, pow.length());
         OutputStream os = h.getResponseBody();
