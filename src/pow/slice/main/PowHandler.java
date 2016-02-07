@@ -20,7 +20,7 @@ public class PowHandler extends ContextualHttpHandler {
 	
 		SlicedURL sUrl = URLManager.getURLFromShort(request);
 
-		int delay = 7500;
+		int delay = 5000;
 		if(sUrl == null) {
 			sUrl = new SlicedURL("www.slice.pw" + Start.localContext + "/slice.html", "slice", 0);
 			delay=0;
