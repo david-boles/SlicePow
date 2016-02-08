@@ -101,12 +101,17 @@
         for(var c = 0; c < url.length; c++) {
             setTimeout(function () {
                 setToNew(url.substring((url.length-lengthToDisplay)/2, (url.length+lengthToDisplay)/2));
+                span.style.color = calcColor(getPartialTotal(vals, lengthToDisplay+1), getPartialTotal(vals, vals.length));//TODO Change color based on position
                 lengthToDisplay++;
             }, getPartialTotal(vals, c+1));
         }
 
 
-
+        function calcColor(delay, total) {
+            var r = (delay/total)*100;
+            var g = (delay/total)*30;
+            return "rgb(" + Math.round(100+r) + "," + Math.round(50+g) + ",40)";
+        }
 
         function calcPos(point, total) {
             return -Math.pow(-(point/total)+1, 5);
@@ -129,14 +134,6 @@
                 total += array[i];
             }
             return total;
-        }
-
-        function printTotal(array) {
-            var total = 0;
-            for(var i = 0; i < array.length; i++) {
-                total += array[i];
-            }
-            alert(total);
         }
     </script>
 
