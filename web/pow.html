@@ -96,12 +96,12 @@
             vals[b] = vals[b]*(delayMillis/total);
         }
 
-        var positionToDisplay = 0;
+        var lengthToDisplay = 1;
 
         for(var c = 0; c < url.length; c++) {
             setTimeout(function () {
-                setToNew(url.substring(0, positionToDisplay+1));
-                positionToDisplay++;
+                setToNew(url.substring((url.length-lengthToDisplay)/2, (url.length+lengthToDisplay)/2));
+                lengthToDisplay++;
             }, getPartialTotal(vals, c+1));
         }
 
