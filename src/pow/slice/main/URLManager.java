@@ -51,14 +51,30 @@ public class URLManager {
 		return null;
 	}
 	
-	public static void removeURL(String shortenedURL) {
+	public static boolean removeSlicedURL(String shortenedURL) {
+		boolean removed = false;
 		synchronized (urls) {
 			for(int i = 0; i < urls.size(); i++) {
 				if(shortenedURL.equals(urls.get(i).shortenedURL)) {
 					urls.remove(i);
+					removed = true;
 				}
 			}
 		}
+		return removed;
+	}
+	
+	public static boolean removeURL(String URL) {
+		boolean removed = false;
+		synchronized (urls) {
+			for(int i = 0; i < urls.size(); i++) {
+				if(URL.equals(urls.get(i).url)) {
+					urls.remove(i);
+					removed = true;
+				}
+			}
+		}
+		return removed;
 	}
 	
 	public static void startMaintainer() {//TODO Test working
@@ -75,7 +91,7 @@ public class URLManager {
 								SlicedURL sUrl = urls.get(i);
 								
 								if(System.currentTimeMillis()-sUrl.creationTime > sUrl.decompDelay){
-									removeURL(sUrl.shortenedURL);
+									removeSlicedURL(sUrl.shortenedURL);
 									logger.log("Removed", sUrl.shortenedURL);
 								}
 								
@@ -149,7 +165,7 @@ public class URLManager {
 					System.out.println((SlicedURL[])ProgramFs.loadObject(ProgramFs.getProgramFile("urls")));
 					urls = new ArrayList<SlicedURL>(Arrays.asList((SlicedURL[])ProgramFs.loadObject(ProgramFs.getProgramFile("urls"))));*/
 					
-					System.out.println("Loading URLs...");
+					logger.log("Loading URLs...");
 					if(urlFolder.isDirectory() || urlFolder.mkdirs()) {
 						File[] sUrlF = urlFolder.listFiles();
 						
@@ -189,12 +205,12 @@ public class URLManager {
 		if(!Thread.interrupted()) {
 			synchronized (urls) {
 				try {
-					System.out.println("Saving URLs...");
+					logger.log("Saving URLs...");
 					
 					if (emptyCreateURLFolder()) {
 						for(int i = 0; i < urls.size(); i++) {
 							FileOutputStream saveFile = new FileOutputStream(new File(urlFolder.getCanonicalPath()+"/" + i));
-							System.out.println(urlFolder.getCanonicalPath()+"/" + i);
+							System.out.println(urlFolder.getCanonicalPath()+"/" + urls.get(i).shortenedURL);
 							ObjectOutputStream save = new ObjectOutputStream(saveFile);
 							
 							SlicedURL out = urls.get(i);

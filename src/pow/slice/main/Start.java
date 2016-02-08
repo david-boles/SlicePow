@@ -29,7 +29,7 @@ public class Start {
 		
 		Scanner scan = new Scanner(System.in);
 		while(!Thread.interrupted()) {
-			String in = scan.next();
+			String in = scan.nextLine();
 			if(in.equals("stop")) {
 				scan.close();
 				stop();
@@ -49,6 +49,16 @@ public class Start {
 						Logger.uLogger.logMore("URL, short URL, hours remaining", new Object[]{sUrl.url, sUrl.shortenedURL, (sUrl.decompDelay-(System.currentTimeMillis()-sUrl.creationTime))/(float)(1000*60*60)});
 					}
 				}
+			}
+			else if(in.startsWith("remove")) {
+				System.out.println(in);
+				String url = in.substring(7);
+				System.out.println(url);
+				Logger.uLogger.log("Successful?", URLManager.removeURL(url));
+			}
+			else if(in.startsWith("sremove")) {
+				String url = in.substring(8);
+				Logger.uLogger.log("Successful?", URLManager.removeSlicedURL(url));
 			}
 			else {
 				Logger.uLogger.log("Incorrect command.");
