@@ -57,7 +57,7 @@ public class Start {
 	}
 	
 	public static void stop() {
-		Logger.uLogger.log("Stopping");
+		Logger.uLogger.log("Stopping:");
 		URLManager.stopMaintainer();
 		URLManager.saveURLs();
 		System.exit(0);

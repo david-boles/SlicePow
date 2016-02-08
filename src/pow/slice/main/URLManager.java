@@ -67,7 +67,8 @@ public class URLManager {
 				@Override
 				public void run() {
 					logger.log("URLManager maintainer thread started!");
-					while(!Thread.interrupted()) {
+					boolean stopped = false;
+					while(!stopped) {
 						synchronized (urls) {synchronized (logger) {
 							Logger.uLogger.log("Current shortened URLs:");
 							for(int i = 0; i < urls.size(); i++) {
@@ -85,11 +86,14 @@ public class URLManager {
 							
 						}}
 
-						saveURLs();
+						if (!t.isInterrupted())saveURLs();
 						
 						try {
 							Thread.sleep(1000*60*5);
-						} catch (InterruptedException e) {}
+						} catch (InterruptedException e) {
+							stopped = true;
+							logger.error("Maintainer interrupted");
+						}
 						
 					}
 				}
@@ -182,29 +186,33 @@ public class URLManager {
 	}
 	
 	public static void saveURLs() {//TODO Broken
-		synchronized (urls) {
-			try {
-				System.out.println("Saving URLs...");
-				
-				if (emptyCreateURLFolder()) {
-					for(int i = 0; i < urls.size(); i++) {
-						FileOutputStream saveFile = new FileOutputStream(new File(urlFolder.getCanonicalPath()+"/" + i));
-						System.out.println(urlFolder.getCanonicalPath()+"/" + i);
-						ObjectOutputStream save = new ObjectOutputStream(saveFile);
-						
-						SlicedURL out = urls.get(i);
-						save.writeObject(out.url);
-						save.writeObject(out.shortenedURL);
-						save.writeLong(out.creationTime);
-						save.writeLong(out.decompDelay);
-						
-						save.close();
+		if(!Thread.interrupted()) {
+			synchronized (urls) {
+				try {
+					System.out.println("Saving URLs...");
+					
+					if (emptyCreateURLFolder()) {
+						for(int i = 0; i < urls.size(); i++) {
+							FileOutputStream saveFile = new FileOutputStream(new File(urlFolder.getCanonicalPath()+"/" + i));
+							System.out.println(urlFolder.getCanonicalPath()+"/" + i);
+							ObjectOutputStream save = new ObjectOutputStream(saveFile);
+							
+							SlicedURL out = urls.get(i);
+							save.writeObject(out.url);
+							save.writeObject(out.shortenedURL);
+							save.writeLong(out.creationTime);
+							save.writeLong(out.decompDelay);
+							
+							save.close();
+						}
 					}
-				}
+					
+					
+				}catch(Exception e) {logger.exception("URL Saving", e);}
 				
-				
-			}catch(Exception e) {logger.exception("URL Saving", e);}
-			
+			}
+		}else {
+			logger.error("Saving failed, thread interrupted");
 		}
 	}
 	
