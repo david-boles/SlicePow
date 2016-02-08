@@ -46,7 +46,7 @@
         height:90px
     }
     span[id="URL"] {
-        font-size: 32px;
+        font-size: 16px;
         color: #8c3b24;
     }
     a:link    {color:#664f30; background-color:transparent; text-decoration:underline}
@@ -100,6 +100,7 @@
 
         for(var c = 0; c < url.length; c++) {
             setTimeout(function () {
+                span.style.font-size = "32px";
                 setToNew(url.substring((url.length-lengthToDisplay)/2, (url.length+lengthToDisplay)/2));
                 span.style.color = calcColor(getPartialTotal(vals, lengthToDisplay+1), getPartialTotal(vals, vals.length));//TODO Change color based on position
                 lengthToDisplay++;
