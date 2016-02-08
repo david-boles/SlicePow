@@ -45,6 +45,9 @@
         width:728px;
         height:90px
     }
+    span[id="URL"] {
+        color: #8c3b24;
+    }
     a:link    {color:#664f30; background-color:transparent; text-decoration:underline}
     a:visited {color:#664f30; background-color:transparent; text-decoration:underline}
     a:hover   {color:#332818; background-color:transparent; text-decoration:underline}
@@ -54,16 +57,89 @@
 
 <body style="">
 
+    <!--Text Display-->
     <p>
-        Exploding URL:<img src="http://www.slice.pw/local/assets/slice_submit.png" alt="@" style="width:64px;height:64px;"> please wait...
+        Exploding URL:
+
+        <br>
+
+        <span id="URL">Javascript must be enabled...</span>
     </p>
 
+    <br>
+
+    <!--Redirect Script-->
     <script>
         setTimeout(function () {
         window.location.href = "!URL!";
         }, !DELAY!);
+
     </script>
 
+    <!--Pow Script-->
+    <script>
+        var span = document.getElementById("URL");
+        var delayMillis = !DELAY!*0.95;
+        var url = "!URL!";
+        var vals = [];
+        var total=0;
+
+        //TODO Magic
+        for(var i = 0; i < url.length; i++) {
+            var val = calcPos(i, url.length);
+            vals[i] = val;
+            total += val;
+        }
+
+        for(var b = 0; b < url.length; b++) {
+            vals[b] = vals[b]*(delayMillis/total);
+        }
+
+        var positionToDisplay = 0;
+
+        for(var c = 0; c < url.length; c++) {
+            setTimeout(function () {
+                setToNew(url.substring(0, positionToDisplay+1));
+                positionToDisplay++;
+            }, getPartialTotal(vals, c+1));
+        }
+
+
+
+
+        function calcPos(point, total) {
+            return -Math.pow((point/total), 2.5)+1;
+        }
+
+        function setToNew(string) {
+            while( span.firstChild ) {
+                span.removeChild( span.firstChild );
+            }
+            span.appendChild( document.createTextNode(string) );
+        }
+
+        function append(string) {
+            span.appendChild( document.createTextNode(string) );
+        }
+
+        function getPartialTotal(array, exclusiveBound) {
+            var total = 0;
+            for(var i = 0; i < exclusiveBound; i++) {
+                total += array[i];
+            }
+            return total;
+        }
+
+        function printTotal(array) {
+            var total = 0;
+            for(var i = 0; i < array.length; i++) {
+                total += array[i];
+            }
+            alert(total);
+        }
+    </script>
+
+    <!--Leaderboard Ad-->
     <div class="LeaderboardAd">
       <script type="text/javascript">
       google_ad_client = "ca-pub-2883252398090731";
