@@ -17,7 +17,8 @@ public class PowHandler extends ContextualHttpHandler {
 	public void handle(HttpExchange h) throws IOException {
 		
 		String request = h.getRequestURI().getPath().substring(1);
-	
+		request = request.toLowerCase();
+		
 		SlicedURL sUrl = URLManager.getURLFromShort(request);
 
 		int delay = 5000;
