@@ -40,7 +40,7 @@ public class PowHandler extends ContextualHttpHandler {
         os.write(pow.getBytes());
         os.close();
         
-        logger.logMore("Finished handling pow request", new Object[]{sUrl.url, sUrl.shortenedURL, sUrl.decompDelay});
+        logger.logMore("Finished handling pow request", new Object[]{sUrl.shortenedURL, sUrl.url, sUrl.decompDelay});
 	}
 
 	@Override

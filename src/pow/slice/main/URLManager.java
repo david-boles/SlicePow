@@ -175,8 +175,7 @@ public class URLManager {
 					
 					if (emptyCreateURLFolder()) {
 						for(int i = 0; i < urls.size(); i++) {
-							FileOutputStream saveFile = new FileOutputStream(new File(urlFolder.getCanonicalPath()+"/" + i));
-							System.out.println(urlFolder.getCanonicalPath()+"/" + urls.get(i).shortenedURL);
+							FileOutputStream saveFile = new FileOutputStream(new File(urlFolder.getCanonicalPath()+"/" + urls.get(i).shortenedURL));
 							ObjectOutputStream save = new ObjectOutputStream(saveFile);
 							
 							SlicedURL out = urls.get(i);
@@ -189,7 +188,7 @@ public class URLManager {
 						}
 					}
 					
-					
+					logger.log("Save complete!");
 				}catch(Exception e) {logger.exception("URL Saving", e);}
 				
 			}
