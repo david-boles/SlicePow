@@ -64,7 +64,7 @@
 
         <br>
 
-        <span id="URL">Javascript must be enabled...</span>
+        <span id="URL">Javascript failed to start... Click <a href="!URL!">here</a> to redirect.</span>
     </p>
 
     <br>
@@ -98,9 +98,11 @@
 
         var lengthToDisplay = 1;
 
+        setToNew("");
+
         for(var c = 0; c < url.length; c++) {
             setTimeout(function () {
-                span.style.font-size = "32px";
+                span.style.fontSize = "32px";
                 setToNew(url.substring((url.length-lengthToDisplay)/2, (url.length+lengthToDisplay)/2));
                 span.style.color = calcColor(getPartialTotal(vals, lengthToDisplay+1), getPartialTotal(vals, vals.length));//TODO Change color based on position
                 lengthToDisplay++;
