@@ -27,10 +27,11 @@ public class PowHandler extends ContextualHttpHandler {
 		}
 		
 		//Fix local links
-		if(!sUrl.url.startsWith("http")) sUrl.url = "http://" + sUrl.url;
+		String url = sUrl.url;
+		if(!sUrl.url.startsWith("http")) url = "http://" + sUrl.url;
 		
 		String pow = ProgramFs.loadString(ProgramFs.getProgramFile("web/pow.html"));
-		pow = pow.replaceAll("!URL!", sUrl.url);
+		pow = pow.replaceAll("!URL!", url);
 		pow = pow.replaceAll("!DELAY!", Integer.toString(delay));
 		
 		h.sendResponseHeaders(200, pow.length());

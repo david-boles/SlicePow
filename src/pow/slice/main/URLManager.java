@@ -13,7 +13,7 @@ import space.davidboles.lib.program.ProgramFs;
 
 public class URLManager {
 	public static Logger logger = Logger.uLogger;
-	public static ArrayList<SlicedURL> urls = new ArrayList<SlicedURL>();//TODO Make private
+	static ArrayList<SlicedURL> urls = new ArrayList<SlicedURL>();//TODO Make private
 	private static Thread t = null;
 	public static File urlFolder = ProgramFs.getProgramFile("urls");
 	
@@ -122,41 +122,7 @@ public class URLManager {
 		t.interrupt();
 	}
 	
-	public static SlicedURL sliceURL(String url, long delay) {
-		SlicedURL sU = new SlicedURL(url, null, delay);//Add sURL name
 		
-		synchronized(urls) {
-			sU.shortenedURL = getUniqueSlice(url);
-			addURL(sU);
-		}
-		
-		return sU;
-	}
-	
-	
-	private static String getUniqueSlice(String url) {
-		String out = randomString(2);
-		
-		synchronized(urls) {
-			while(getURLFromShort(out) != null) {
-				out+=randomString(1);
-			}
-		}
-		
-		//TODO add functional thang
-		return out;
-	}
-	
-	static final String chars = "23456789qwertyuipasdfghjkzxcvbnmQWERTYUIPASDFGHJKLZXCVBNM";
-	static Random rnd = new Random();
-
-	private static String randomString( int len ){
-		StringBuilder sb = new StringBuilder( len );
-		for( int i = 0; i < len; i++ ) 
-			sb.append( chars.charAt( rnd.nextInt(chars.length()) ) );
-		return sb.toString();
-	}
-	
 	public static void loadURLs() {//TODO Broken
 		synchronized (urls) {
 			if(urls.size() == 0) {
