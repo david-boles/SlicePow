@@ -7,7 +7,6 @@ public class URLSlicer {
 	static Random random = new Random();
 	
 	public static SlicedURL parseURL(String url) {
-		url = url.toLowerCase();
 		
 		long decompD = 1000*60*60*24*14;
 		String custom = "";
@@ -17,10 +16,8 @@ public class URLSlicer {
 			custom = url.substring(0, url.indexOf('#'));
 			url = url.substring(url.indexOf('#')+1, url.length());
 			
-			System.out.println(custom);
-			System.out.println(url);
-			
-			//TODO custom part of allowed
+			custom = custom.toLowerCase();
+			custom = makeAllowed(custom);
 		}
 		
 		if(url.startsWith("#i")) {
@@ -85,5 +82,15 @@ public class URLSlicer {
 		for( int i = 0; i < len; i++ ) 
 			sb.append( allowed.charAt( random.nextInt(allowed.length()) ) );
 		return sb.toString();
+	}
+	
+	static String makeAllowed(String in) {
+		for(int pos = 0; pos < in.length(); pos++) {
+			if(!allowed.contains(Character.toString(in.charAt(pos)))) {
+				in.replace(Character.toString(in.charAt(pos)), "");
+			}
+		}
+		
+		return in;
 	}
 }
