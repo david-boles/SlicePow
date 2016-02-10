@@ -15,7 +15,7 @@
       background-size: 128px 128px;
       /*background-color: #ca9e5f;*/
     }
-    .slice-form {
+    .body {
       position: absolute;
       padding: 0px;
       margin: auto;
@@ -68,11 +68,13 @@
 </head>
 
 <body style="">
-  <form action="submit" class="slice-form">
-    URL: <input type="text" autocomplete="off" name="url" required="" class="">
-    <input type="image" title="Slice it!" name="submit" src="assets/slice_submit.gif" class="" alt="Submit" style="width:64px;height:64px;">
-  </form>
-
+  <div class="body">
+    <form action="submit" class="slice-form">
+      URL: <input type="text" autocomplete="off" name="url" required="" class="">
+      <input type="image" title="Slice it!" name="submit" src="assets/slice_submit.gif" class="" alt="Submit" style="width:64px;height:64px;">
+    </form>
+    <a href="../local/help.html" style="font-size: 24px;">Need help?</a>
+  </div>
     <div class="LeaderboardAd">
       <script type="text/javascript">
       google_ad_client = "ca-pub-2883252398090731";

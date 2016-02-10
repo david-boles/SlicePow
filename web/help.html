@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Pow</title>
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    body {
+      background-image: url("http://www.slice.pw/local/assets/slice_background.png");
+      /*background-color: #ca9e5f;*/
+    }
+    p {
+      position: absolute;
+      padding: 0px;
+      margin: auto;
+      width: 90%;
+      overflow: hidden;
+      height: calc(90% - 90px);
+      left: 5%;
+      top: 0%;
+      text-align: left;
+      border-image-source: none;
+      border-color: rgb(0, 0, 0);
+      font-size: 48px;
+      font-family: Verdana;
+      font-weight: bold;
+      color: #4c3b24;
+      overflow: auto;
+    }
+    :focus {
+      outline: none;
+    }
+    ::selection {
+      background: #f0ddc0;
+    }
+    .LeaderboardAd {
+        position: absolute;
+        top: calc(99% - 90px);
+        left: calc(49% - 364px);
+        display:inline-block;
+        width:728px;
+        height:90px
+    }
+    span[id="URL"] {
+        font-size: 16px;
+        color: #8c3b24;
+    }
+    a:link    {color:#664f30; background-color:transparent; text-decoration:underline}
+    a:visited {color:#664f30; background-color:transpar3
+      ent; text-decoration:underline}
+    a:hover   {color:#332818; background-color:transparent; text-decoration:underline}
+    a:active  {color:#664f30; background-color:transparent; text-decoration:underline}
+  </style>
+</head>
+
+<body style="">
+
+    <!--Text Display-->
+    <p>
+        Ready to <a href="../local/slice.html">Slice</a>? Help:<br>
+
+        <span style="font-size: 40px;">Slicing:<br></span>
+        <span style="font-size: 32px;">
+          1) Copy your long URL (try ctrl+c)<br>
+          2) Go to <a href="slice.html">slice.pw</a><br>
+          3) Paste URL in the brown box (try ctrl+v)<br>
+          4) Click the animated sword.<br>
+          5) Go to slice.pw/<i>your-sliced-url</i> to expand and get redirected to your full URL.<br>
+        </span><br><br>
+
+        <span style="font-size: 40px;">Tags:<br></span>
+        <span style="font-size: 32px;">
+          You can add certain tags in front of your URL to change options. These are still in development so check back for changes!<br>
+          (Currently must be in order with no spaces)<br><br>
+
+          #i  --  Makes a sliced URL last for as long as possible.<br>
+          #c<i>yourownslicedurl</i>#  --  Allows you to have a custom shortened URL, must be made of alphanumeric characters.<br>
+          <br>
+          Examples:<br>
+          #cyoutube##iwww.youtube.com  --  Going to slice.pw/youtube would redirect you to www.youtube.com for years to come.
+        </span>
+    </p>
+
+    <br>
+
+    <!--Leaderboard Ad-->
+    <div class="LeaderboardAd">
+      <script type="text/javascript">
+      google_ad_client = "ca-pub-2883252398090731";
+      google_ad_slot = "7214535548";
+      google_ad_width = 728;
+      google_ad_height = 90;
+
+      </script>
+      <!-- SlicePowLeaderboard -->
+      <script type="text/javascript"
+      src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+    </div>
+
+</body>
+
+</html>
