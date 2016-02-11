@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Slice</title>
+  <link rel="icon" 
+      type="image/gif" 
+      href="../local/assets/favicon.png">
+  <style type="text/css">
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+    }
+    body {
+      background-image: url("assets/slice_background.png");
+      background-size: 128px 128px;
+      /*background-color: #ca9e5f;*/
+    }
+    .body {
+      position: absolute;
+      padding: 0px;
+      margin: auto;
+      width: 90%;
+      overflow: visible;
+      height: 150px;
+      left: 5%;
+      top: 35%;
+      text-align: center;
+      border-image-source: none;
+      border-color: rgb(0, 0, 0);
+      font-size: 48px;
+      font-family: Verdana;
+      font-weight: bold;
+      color: #4c3b24;
+
+    }
+    input[name="url"] {
+      font-size: 32px;
+      font-family: Verdana;
+      width: calc(99% - 256px);
+      margin: 0px;
+      border-style: solid;
+      border-color: rgb(73, 42, 27);
+      background-color: rgb(138, 64, 23);
+      color: #ffe4bf;
+    }
+    input[name="submit"] {
+      transform: rotate(-15deg);
+    }
+    :focus {
+      outline: none;
+    }
+    ::selection {
+      background: #f0ddc0;
+    }
+    .LeaderboardAd {
+        position: absolute;
+        top: calc(99% - 90px);
+        left: calc(49% - 364px);
+        display:inline-block;
+        width:728px;
+        height:90px
+    }
+    a:link    {color:#664f30; background-color:transparent; text-decoration:underline}
+    a:visited {color:#664f30; background-color:transparent; text-decoration:underline}
+    a:hover   {color:#332818; background-color:transparent; text-decoration:underline}
+    a:active  {color:#664f30; background-color:transparent; text-decoration:underline}
+  </style>
+</head>
+
+<body style="">
+  <div class="body">
+    <form action="submit" class="slice-form">
+      URL: <input type="text" autocomplete="off" name="url" required="" class="">
+      <input type="image" title="Slice it!" name="submit" src="assets/slice_submit.gif" class="" alt="Submit" style="width:64px;height:64px;">
+    </form>
+    <a href="../local/help.html" style="font-size: 24px;">Need help?</a>
+  </div>
+    <div class="LeaderboardAd">
+      <script type="text/javascript">
+      google_ad_client = "ca-pub-2883252398090731";
+      google_ad_slot = "7214535548";
+      google_ad_width = 728;
+      google_ad_height = 90;
+
+      </script>
+      <!-- SlicePowLeaderboard -->
+      <script type="text/javascript"
+      src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+    </div>
+</body>
+
+</html>
