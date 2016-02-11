@@ -76,7 +76,7 @@ public class Start {
 					Logger.uLogger.log("Incorrect command.");
 				}
 			}catch(Exception e) {
-				Logger.uLogger.exception("Controls", e);
+				Logger.uLogger.error("Console command errored");
 			}
 		}
 	}
